@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laboratório virtual de autômatos</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="pular" href="#principal">Ir para o conteúdo</a>
+<header>
+  <h1>Laboratório virtual de autômatos</h1>
+  <p>Máquina de Moore M = (Q, Σ, δ, q0, Γ, λ)</p>
+  <div class="barra">
+    <label for="maq">Sistema:</label>
+    <select id="maq"><option value="catraca">Catraca</option><option value="semaforo">Semáforo</option></select>
+    <div role="group" aria-label="Autômato exibido">
+      <button id="ver-orig" aria-pressed="true">Original</button>
+      <button id="ver-min" aria-pressed="false" disabled>Mínimo</button>
+    </div>
+  </div>
+</header>
+<p id="msg" class="msg info" role="status"></p>
+<noscript><p class="msg erro">Este laboratório precisa de JavaScript ativado.</p></noscript>
+<main id="principal">
+  <div class="col">
+  <section aria-labelledby="t0"><h2 id="t0">Sistema físico (camada 1)</h2><div id="fisico"></div></section>
+  <section aria-labelledby="t1">
+    <h2 id="t1">Diagrama de estados</h2>
+    <div id="diagrama"></div>
+    <p id="def"></p>
+    <div class="rolar"><table id="tab-delta"></table></div>
+  </section>
+  </div>
+  <div class="col">
+    <section aria-labelledby="t2">
+      <h2 id="t2">Simulação</h2>
+      <div class="linha" id="entradas" role="group" aria-label="Entradas de Σ"></div>
+      <div class="linha">
+        <label for="seq">Sequência:</label>
+        <input id="seq" type="text" autocomplete="off" placeholder="ex.: MGM">
+        <button id="executar">Executar</button>
+        <button id="reiniciar">Reiniciar</button>
+      </div>
+      <p id="atual"></p>
+      <div class="rolar">
+        <table>
+          <caption>Histórico de transições e saídas</caption>
+          <thead><tr><th scope="col">Passo</th><th scope="col">Entrada</th><th scope="col">Estado</th><th scope="col">Saída λ</th></tr></thead>
+          <tbody id="hist"></tbody>
+        </table>
+      </div>
+    </section>
+    <section aria-labelledby="t3">
+      <h2 id="t3">Minimização</h2>
+      <div class="linha">
+        <button id="iniciar">Minimizar passo a passo</button>
+        <button id="prox" disabled>Próxima rodada</button>
+        <button id="validar">Validar equivalência</button>
+      </div>
+      <ol id="partes" class="partes"></ol>
+      <p id="resumo"><strong></strong></p>
+    </section>
+  </div>
+</main>
+<!-- Ordem: motor (camada 2), dados, interface (camada 3) -->
+<script src="js/motor/moore.js"></script>
+<script src="js/motor/alcancaveis.js"></script>
+<script src="js/motor/minimizacao.js"></script>
+<script src="js/motor/equivalencia.js"></script>
+<script src="js/maquinas.js"></script>
+<script src="js/fisico/interface.js"></script>
+<script src="js/fisico/catraca.js"></script>
+<script src="js/fisico/semaforo.js"></script>
+<script src="js/fisico/alarme.js"></script>
+<script src="js/ui/diagrama.js"></script>
+<script src="js/ui/app.js"></script>
+</body>
+</html>

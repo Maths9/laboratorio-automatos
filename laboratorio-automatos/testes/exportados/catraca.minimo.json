@@ -1,0 +1,30 @@
+{
+  "nome": "Catraca (mínimo)",
+  "Q": [
+    "{T1,T2}",
+    "{L1,L2}"
+  ],
+  "Sigma": [
+    "M",
+    "G"
+  ],
+  "delta": {
+    "{T1,T2}": {
+      "M": "{L1,L2}",
+      "G": "{T1,T2}"
+    },
+    "{L1,L2}": {
+      "M": "{L1,L2}",
+      "G": "{T1,T2}"
+    }
+  },
+  "q0": "{T1,T2}",
+  "Gamma": [
+    "BLOQUEADA",
+    "LIBERADA"
+  ],
+  "lambda": {
+    "{T1,T2}": "BLOQUEADA",
+    "{L1,L2}": "LIBERADA"
+  }
+}

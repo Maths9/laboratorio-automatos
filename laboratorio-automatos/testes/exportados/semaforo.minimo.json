@@ -1,0 +1,38 @@
+{
+  "nome": "Semáforo (mínimo)",
+  "Q": [
+    "{V1,V2}",
+    "{A1,A2}",
+    "{R1,R3}",
+    "{R2,R4}"
+  ],
+  "Sigma": [
+    "T"
+  ],
+  "delta": {
+    "{V1,V2}": {
+      "T": "{A1,A2}"
+    },
+    "{A1,A2}": {
+      "T": "{R1,R3}"
+    },
+    "{R1,R3}": {
+      "T": "{R2,R4}"
+    },
+    "{R2,R4}": {
+      "T": "{V1,V2}"
+    }
+  },
+  "q0": "{V1,V2}",
+  "Gamma": [
+    "VERDE",
+    "AMARELO",
+    "VERMELHO"
+  ],
+  "lambda": {
+    "{V1,V2}": "VERDE",
+    "{A1,A2}": "AMARELO",
+    "{R1,R3}": "VERMELHO",
+    "{R2,R4}": "VERMELHO"
+  }
+}

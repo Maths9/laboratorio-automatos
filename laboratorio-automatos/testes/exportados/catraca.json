@@ -1,0 +1,42 @@
+{
+  "nome": "Catraca",
+  "Q": [
+    "T1",
+    "T2",
+    "L1",
+    "L2"
+  ],
+  "Sigma": [
+    "M",
+    "G"
+  ],
+  "delta": {
+    "T1": {
+      "M": "L1",
+      "G": "T2"
+    },
+    "T2": {
+      "M": "L2",
+      "G": "T1"
+    },
+    "L1": {
+      "M": "L2",
+      "G": "T1"
+    },
+    "L2": {
+      "M": "L1",
+      "G": "T2"
+    }
+  },
+  "q0": "T1",
+  "Gamma": [
+    "BLOQUEADA",
+    "LIBERADA"
+  ],
+  "lambda": {
+    "T1": "BLOQUEADA",
+    "T2": "BLOQUEADA",
+    "L1": "LIBERADA",
+    "L2": "LIBERADA"
+  }
+}

@@ -1,0 +1,80 @@
+/* Tokens (sistema de design). Contraste alto; fontes do sistema, sem downloads. */
+:root{--fundo:#fff;--texto:#1A1A1A;--borda:#5A5A5A;--foco:#0B57D0;--sup:#F3F5F8;--ok:#1B5E20;--erro:#B71C1C;
+--e1:4px;--e2:8px;--e3:16px;--raio:8px;--mov:150ms}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 system-ui,sans-serif;color:var(--texto);background:var(--fundo)}
+header,main{max-width:1200px;margin:auto;padding:var(--e3)}
+h1{margin:0;font-size:1.5rem}h2{margin:0 0 var(--e2);font-size:1.15rem}p{margin:var(--e2) 0}
+.barra,.linha{display:flex;flex-wrap:wrap;gap:var(--e2);align-items:center}
+.linha{margin:var(--e2) 0}.barra{margin-top:var(--e2);gap:var(--e3)}
+main{display:grid;gap:var(--e3)}
+@media(min-width:900px){main{grid-template-columns:1.2fr 1fr}}
+.col{display:grid;gap:var(--e3);align-content:start}
+section{border:2px solid var(--borda);border-radius:var(--raio);padding:var(--e3);background:var(--sup)}
+button,select,input{font:inherit;min-height:44px;padding:0 var(--e3);border:2px solid var(--borda);border-radius:var(--raio);background:#fff;color:inherit}
+button{font-weight:600;cursor:pointer;transition:background var(--mov)}
+button:hover:not(:disabled){background:#E3ECFB}
+button[aria-pressed=true]{background:var(--foco);border-color:var(--foco);color:#fff}
+button:disabled{opacity:.55;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+input{flex:1;min-width:8rem}
+.pular{position:absolute;left:-999px}.pular:focus{left:var(--e2);top:var(--e2);background:#fff;padding:var(--e2);z-index:9}
+.msg{max-width:1168px;margin:0 auto;padding:var(--e2) var(--e3);border-left:6px solid var(--foco);font-weight:600}
+.msg::before{content:"ℹ "}.ok{border-color:var(--ok);color:var(--ok)}.ok::before{content:"✔ "}
+.erro{border-color:var(--erro);color:var(--erro)}.erro::before{content:"✖ "}
+table{border-collapse:collapse;width:100%;background:#fff}
+th,td{border:1px solid var(--borda);padding:var(--e1) var(--e2);text-align:left}
+caption{text-align:left;font-weight:600;padding-bottom:var(--e1)}
+.rolar{max-height:230px;overflow:auto}
+.partes{padding-left:0;list-style:none}.partes li{background:#fff;border:1px solid var(--borda);border-radius:var(--raio);padding:var(--e2);margin-bottom:var(--e2)}
+svg{max-width:100%;height:auto;background:#fff;border:1px solid var(--borda);border-radius:var(--raio)}
+svg .nome{font:700 13px system-ui,sans-serif;text-anchor:middle}
+svg .saida{font:12px system-ui,sans-serif;text-anchor:middle}
+svg .rot{font:700 13px system-ui,sans-serif;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+svg g:focus{outline:none}svg g:focus-visible circle:first-of-type{stroke:var(--foco);stroke-width:4px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+svg [role=button]{cursor:pointer}svg [role=button]:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+svg .fx{font:700 13px system-ui,sans-serif;text-anchor:middle}svg .fl{font:700 15px system-ui,sans-serif}
+svg .bracos{transition:transform 500ms ease-in-out}
+
+/* ===== Melhorias visuais e animacoes (todas desligadas com prefers-reduced-motion) ===== */
+body{background:#EEF2F8}
+header{max-width:1168px;margin:var(--e3) auto 0;background:linear-gradient(135deg,#0B3D91,#1E6FD9);color:#fff;border-radius:12px;box-shadow:0 4px 14px rgba(11,61,145,.3);animation:entra .5s ease-out both}
+header p{margin:0}
+header select{color:var(--texto);border-color:#fff}
+header button{background:transparent;color:#fff;border-color:#fff}
+header button:hover:not(:disabled){background:rgba(255,255,255,.2)}
+header button[aria-pressed=true]{background:#fff;border-color:#fff;color:#0B3D91}
+header button[aria-pressed=true]:hover:not(:disabled){background:#fff}
+section{border:1px solid #C5CBD6;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.07);animation:entra .5s ease-out both}
+.col section:nth-child(2){animation-delay:.12s}
+button{transition:background var(--mov),transform var(--mov),box-shadow var(--mov)}
+button:hover:not(:disabled){box-shadow:0 3px 8px rgba(0,0,0,.18);transform:translateY(-1px)}
+button:active:not(:disabled){transform:translateY(1px) scale(.97);box-shadow:none}
+#executar,#iniciar{background:var(--foco);border-color:var(--foco);color:#fff}
+#executar:hover:not(:disabled),#iniciar:hover:not(:disabled){background:#0842A0}
+#entradas button{min-width:72px;font-size:1.25rem}
+.rolar{scroll-behavior:smooth}
+.msg{background:#fff;border-radius:0 var(--raio) var(--raio) 0;animation:msgIn .35s ease-out}
+#hist tr:last-child{animation:linha .6s ease-out}
+.partes li{animation:entra .4s ease-out both}
+.bloco{display:inline-block;margin:2px;padding:2px 10px;border:2px solid var(--foco);border-radius:999px;background:#E3ECFB;font-weight:600;animation:entra .4s ease-out both}
+.bloco:nth-of-type(2){animation-delay:.1s}.bloco:nth-of-type(3){animation-delay:.2s}.bloco:nth-of-type(4){animation-delay:.3s}
+#resumo{font-weight:700;font-size:1.1rem;color:var(--ok)}
+.troca{animation:entra .4s ease-out}
+svg .anel{transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.2,1.6,.4,1) both,respira 2.4s ease-in-out .6s infinite}
+svg .usada{stroke-dasharray:1;animation:tra .5s ease-out}
+svg .luz{transition:fill .35s,stroke-width .35s}
+svg .luz.acesa{transform-box:fill-box;transform-origin:center;animation:respira 1.8s ease-in-out infinite}
+svg .painel{transition:fill .4s}
+svg .coin.cai{animation:cai .6s ease-in}
+svg [role=button]{transform-box:fill-box;transform-origin:center;transition:transform var(--mov)}
+svg [role=button]:hover{transform:scale(1.04)}svg [role=button]:active{transform:scale(.96)}
+@keyframes entra{from{opacity:0;transform:translateY(14px)}}
+@keyframes msgIn{from{opacity:0;transform:translateX(-12px);background:#FFF3C4}}
+@keyframes linha{from{background:#FFF3C4;opacity:0}}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+@keyframes respira{50%{transform:scale(1.08)}}
+@keyframes tra{from{stroke-dashoffset:1}}
+@keyframes cai{from{opacity:1;transform:translateY(-14px)}to{opacity:0;transform:translateY(24px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

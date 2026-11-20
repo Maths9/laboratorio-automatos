@@ -1,0 +1,10 @@
+{
+  "catraca": {
+    "original": 4,
+    "minimo": 2
+  },
+  "semaforo": {
+    "original": 8,
+    "minimo": 4
+  }
+}
