@@ -155,12 +155,12 @@ export const DesafioTab: React.FC = () => {
     // 3. Comparar agrupamento com os blocos da solução mínima oficial
     const blocosOficiais = solucaoOficial.particoes[solucaoOficial.particoes.length - 1].blocos;
     const blocosAlunoNormalizados = gruposAluno
-      .map((g) => [...g].sort().join(','))
+      .map((g) => g.toSorted().join(','))
       .filter(Boolean)
-      .sort();
+      .toSorted();
     const blocosOficiaisNormalizados = blocosOficiais
-      .map((b) => [...b].sort().join(','))
-      .sort();
+      .map((b) => b.toSorted().join(','))
+      .toSorted();
 
     const saoIguais =
       erros.length === 0 &&

@@ -5,7 +5,7 @@ import { removerInalcancaveis } from './alcancaveis';
  * Formatação do nome de um bloco de estados equivalentes: ex: "{T1, T2}"
  */
 export function formatarNomeBloco(estados: string[]): string {
-  return '{' + [...estados].sort().join(', ') + '}';
+  return '{' + estados.toSorted().join(', ') + '}';
 }
 
 /**

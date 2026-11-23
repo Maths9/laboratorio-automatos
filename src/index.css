@@ -2,30 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light dark;
+  --scrollbar-thumb: #94a3b8;
+  --scrollbar-track: #f1f5f9;
+}
+
+:root.dark {
+  --scrollbar-thumb: #475569;
+  --scrollbar-track: #0f172a;
+}
+
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased font-sans;
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200;
     overflow-x: hidden;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+
+  * {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 }
 
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+/* Fallback para navegadores legados WebKit */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
 
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+  }
 }
 
 /* Animações e Keyframes */

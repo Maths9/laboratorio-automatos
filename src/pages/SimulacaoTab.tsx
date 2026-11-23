@@ -348,7 +348,7 @@ export const SimulacaoTab: React.FC<SimulacaoTabProps> = ({
         </div>
 
         <div className="max-h-48 overflow-y-auto space-y-1.5 pr-1">
-          {historico.slice().reverse().map((h) => (
+          {historico.toReversed().map((h) => (
             <div
               key={h.passo}
               className="flex items-center justify-between bg-slate-950 px-3 py-2 rounded-xl border border-slate-800/80 text-xs font-mono"
