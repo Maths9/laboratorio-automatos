@@ -13,8 +13,8 @@ import { BibliotecaTab } from './pages/BibliotecaTab';
 import { EditorTab } from './pages/EditorTab';
 import { SimulacaoTab } from './pages/SimulacaoTab';
 import { MinimizacaoTab } from './pages/MinimizacaoTab';
-import { ValidacaoTab } from './pages/ValidacaoTab';
 import { DesafioTab } from './pages/DesafioTab';
+import { GuiaTab } from './pages/GuiaTab';
 import {
   Home,
   Wrench,
@@ -24,6 +24,7 @@ import {
   Minimize2,
   ShieldCheck,
   Award,
+  BookOpen,
   Cpu,
   Layers,
   ChevronDown,
@@ -87,12 +88,12 @@ export const App: React.FC = () => {
 
   const tabs = [
     { id: 'home', label: 'Início', icone: Home },
-    { id: 'lab', label: 'Bancada Robótica', icone: Wrench },
+    { id: 'guia', label: 'Guia Teórico', icone: BookOpen },
+    { id: 'lab', label: 'Bancada Lúdica', icone: Wrench },
     { id: 'biblioteca', label: 'Biblioteca', icone: Box },
     { id: 'editor', label: 'Editor de Autômatos', icone: GitBranch },
     { id: 'simulacao', label: 'Simulação', icone: PlayCircle },
     { id: 'minimizacao', label: 'Minimização', icone: Minimize2 },
-    { id: 'validacao', label: 'Validação (400x)', icone: ShieldCheck },
     { id: 'desafio', label: 'Modo Desafio', icone: Award },
   ];
 
@@ -204,6 +205,12 @@ export const App: React.FC = () => {
             />
           )}
 
+          {abaAtiva === 'guia' && (
+            <GuiaTab
+              onNavegarPara={setAbaAtiva}
+            />
+          )}
+
           {abaAtiva === 'lab' && (
             <LabMontagemTab
               maquina={maquinaAtiva}
@@ -240,12 +247,6 @@ export const App: React.FC = () => {
             <MinimizacaoTab
               maquina={maquinaAtiva}
               onAplicarMinimizada={selecionarMaquina}
-            />
-          )}
-
-          {abaAtiva === 'validacao' && (
-            <ValidacaoTab
-              maquina={maquinaAtiva}
             />
           )}
 

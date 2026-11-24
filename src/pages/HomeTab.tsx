@@ -55,6 +55,14 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <button
+              onClick={() => onNavegarPara('guia')}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
+            >
+              <Compass className="w-4 h-4 text-cyan-200" />
+              Guia Teórico Completo
+            </button>
+
+            <button
               onClick={() => onNavegarPara('simulacao')}
               className="flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-105 active:scale-95"
             >
@@ -72,9 +80,9 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
             <button
               onClick={() => onNavegarPara('desafio')}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-semibold text-sm border border-indigo-200 dark:border-indigo-700/50 shadow-sm transition-all hover:scale-105 active:scale-95"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-50 dark:bg-amber-950/80 hover:bg-amber-100 dark:hover:bg-amber-900 text-amber-800 dark:text-amber-300 font-semibold text-sm border border-amber-200 dark:border-amber-700/50 shadow-sm transition-all hover:scale-105 active:scale-95"
             >
-              <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               Modo Desafio
             </button>
           </div>
@@ -128,12 +136,12 @@ export const HomeTab: React.FC<HomeTabProps> = ({
 
         <div className="bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-emerald-400 dark:hover:border-slate-700 shadow-sm transition-all">
           <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
-            <ShieldCheck className="w-6 h-6" />
+            <Sparkles className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Validação com 400 Testes</h3>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Robótica Lúdica & Didática</h3>
           <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            Compare o autômato original com o minimizado através de 400 sequências aleatórias com semente
-            reproduzível e busca exata em largura (BFS) sobre pares de estados.
+            A robótica serve como ponte visual tangível: cada estado do autômato ganha vida em atuadores,
+            servomotores e luzes, tornando os teoremas formais intuitivos e divertidos.
           </p>
         </div>
       </section>

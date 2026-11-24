@@ -73,9 +73,10 @@ export const AutomatonFlowEditor: React.FC<AutomatonFlowEditorProps> = ({
   // Calcula layout circular automático para os nós
   const gerarLayout = useCallback((m: MooreMachine, ativo?: string) => {
     const total = m.Q.length;
-    const raio = Math.max(160, total * 35);
-    const centroX = 350;
-    const centroY = 240;
+    // Raio ajustado para caber perfeitamente no container sem cortar nós
+    const raio = Math.min(190, Math.max(130, total * 24));
+    const centroX = 260;
+    const centroY = 220;
 
     const novosNodes: Node[] = m.Q.map((q, i) => {
       const angulo = (i / total) * 2 * Math.PI - Math.PI / 2;
@@ -385,16 +386,19 @@ export const AutomatonFlowEditor: React.FC<AutomatonFlowEditorProps> = ({
           onConnect={readOnly ? undefined : onConnect}
           onEdgeClick={readOnly ? undefined : onEdgeClick}
           fitView
+          fitViewOptions={{ padding: 0.25, includeHiddenNodes: false }}
           attributionPosition="bottom-left"
           className="bg-slate-950"
         >
           <Background color="#1e293b" gap={20} size={1} variant={BackgroundVariant.Dots} />
           <Controls className="!bg-slate-900 !border-slate-800 !text-white !fill-white" />
-          <MiniMap
-            nodeColor={(n) => (n.id === maquina.q0 ? '#f59e0b' : '#3b82f6')}
-            maskColor="rgba(15, 23, 42, 0.7)"
-            className="!bg-slate-900 !border-slate-800 rounded-lg"
-          />
+          {!readOnly && (
+            <MiniMap
+              nodeColor={(n) => (n.id === maquina.q0 ? '#f59e0b' : '#3b82f6')}
+              maskColor="rgba(15, 23, 42, 0.7)"
+              className="!bg-slate-900 !border-slate-800 rounded-lg !w-28 !h-20"
+            />
+          )}
         </ReactFlow>
 
         {/* Notificação de Validação no Canto Inferior */}

@@ -2,14 +2,13 @@ import React, { useRef } from 'react';
 import { MooreMachine } from '../types/automaton';
 import { AutomatonFlowEditor } from '../components/flow/AutomatonFlowEditor';
 import { DefinicaoFormal } from '../components/formal/DefinicaoFormal';
+import { ExplicacaoContextual } from '../components/pedagogico/ExplicacaoContextual';
 import { sistemasPredefinidos } from '../data/sistemasPredefinidos';
 import {
   Download,
   Upload,
   Plus,
-  RefreshCw,
   FolderOpen,
-  Sparkles,
 } from 'lucide-react';
 
 interface EditorTabProps {
@@ -85,14 +84,18 @@ export const EditorTab: React.FC<EditorTabProps> = ({
   };
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto py-4">
+    <div className="space-y-6 max-w-6xl mx-auto py-4">
+      {/* ============================================================== */}
+      {/* 1. PARTE PRÁTICA: CONTROLES DO EDITOR E CANVAS REACT FLOW     */}
+      {/* ============================================================== */}
+
       {/* Cabeçalho do Editor */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             Editor Visual de Autômatos Finitos (React Flow)
           </h2>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Construa e edite máquinas de Moore personalizadas: adicione estados, configure transições direcionadas e saídas λ.
           </p>
         </div>
@@ -109,25 +112,25 @@ export const EditorTab: React.FC<EditorTabProps> = ({
 
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-800 transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 transition-all shadow-sm"
             title="Importar autômato em formato JSON"
           >
-            <Upload className="w-3.5 h-3.5 text-cyan-400" />
+            <Upload className="w-3.5 h-3.5 text-blue-600 dark:text-cyan-400" />
             Carregar JSON
           </button>
 
           <button
             onClick={handleExportarJSON}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-800 transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 transition-all shadow-sm"
             title="Exportar autômato em formato JSON"
           >
-            <Download className="w-3.5 h-3.5 text-emerald-400" />
+            <Download className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             Salvar JSON
           </button>
 
           <button
             onClick={handleCriarNovoAutomato}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-all shadow"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-all shadow active:scale-95"
           >
             <Plus className="w-3.5 h-3.5" />
             Criar do Zero
@@ -137,8 +140,8 @@ export const EditorTab: React.FC<EditorTabProps> = ({
 
       {/* Seletor Rápido de Sistemas Prontos */}
       <div className="flex items-center gap-3 overflow-x-auto pb-1 text-xs">
-        <span className="text-slate-400 font-semibold flex items-center gap-1 whitespace-nowrap">
-          <FolderOpen className="w-3.5 h-3.5 text-cyan-400" />
+        <span className="text-slate-500 dark:text-slate-400 font-semibold flex items-center gap-1 whitespace-nowrap">
+          <FolderOpen className="w-3.5 h-3.5 text-blue-600 dark:text-cyan-400" />
           Carregar Exemplo:
         </span>
         {sistemasPredefinidos.map((sis) => (
@@ -147,8 +150,8 @@ export const EditorTab: React.FC<EditorTabProps> = ({
             onClick={() => onSelecionarPredefinido(sis)}
             className={`px-3 py-1.5 rounded-lg border font-medium whitespace-nowrap transition-all ${
               sis.nome === maquina.nome
-                ? 'bg-blue-600/30 border-blue-500 text-white font-bold'
-                : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                ? 'bg-blue-50 dark:bg-blue-600/30 border-blue-400 dark:border-blue-500 text-blue-700 dark:text-white font-bold'
+                : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 shadow-sm'
             }`}
           >
             {sis.nome} ({sis.Q.length} estados)
@@ -156,7 +159,7 @@ export const EditorTab: React.FC<EditorTabProps> = ({
         ))}
       </div>
 
-      {/* Área do Editor React Flow */}
+      {/* Área Prática do Editor React Flow */}
       <div className="w-full">
         <AutomatonFlowEditor
           maquina={maquina}
@@ -164,6 +167,19 @@ export const EditorTab: React.FC<EditorTabProps> = ({
           altura="560px"
         />
       </div>
+
+      {/* ============================================================== */}
+      {/* 2. EXPLICAÇÃO TEÓRICA E DEFINIÇÃO FORMAL (ABAIXO DO GRAFO)     */}
+      {/* ============================================================== */}
+
+      {/* Explicação Didática da Construção Formal de Autômatos */}
+      <ExplicacaoContextual
+        titulo={`Edição Visual & Definição Formal da Máquina M = (Q, Σ, δ, q₀, Γ, λ)`}
+        oQueEstaAcontecendo={`Você está manipulando a representação em grafo do autômato "${maquina.nome}". Cada círculo é um estado q ∈ Q com sua saída λ(q) indicada internamente. As setas direcionadas representam as transições δ(origem, símbolo) = destino.`}
+        conceitoTeorico={`Na Teoria da Computação, um Autômato Finito Determinístico (DFA/Moore) é completo quando para todo estado q ∈ Q e todo símbolo σ ∈ Σ existe exatamente uma transição definida. Estados sem saída ou transições ambíguas violam o determinismo formal.`}
+        formulaOuRegra={`δ: Q × Σ → Q  e  λ: Q → Γ`}
+        dicaPratica={`Clique duas vezes num estado para renomeá-lo ou alterar sua saída λ. Para criar transições, arraste do conector lateral de um estado até outro.`}
+      />
 
       {/* Definição Formal Matemática M = (Q, Σ, δ, q0, Γ, λ) */}
       <div className="w-full">
